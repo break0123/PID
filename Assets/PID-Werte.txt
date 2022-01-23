@@ -1,0 +1,9 @@
+Aktuelle Werte für die PID-Controller, falls die Eingestellten verloren gehen
+
+Altitude:
+
+	2, 0.175, 5
+
+Distance:
+	
+	1, 0.0875, 2.5
