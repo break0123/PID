@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Waypoint
   - Cube
+  - Obstacle
+  - ' Sensor'
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Ground Layer
-  - 
+  - ObstacleLayer
   - 
   - 
   - 

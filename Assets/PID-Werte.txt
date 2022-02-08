@@ -6,4 +6,4 @@ Altitude:
 
 Distance:
 	
-	1, 0.0875, 2.5
+	1, 0, 8

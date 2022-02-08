@@ -35,7 +35,7 @@ public class FollowerCubeController : MonoBehaviour
         float altErr = targetAltitude - curAltitude;
         float curAltValue = altitudePID.Update(altErr);
 
-        //Der Ausgabe-Wert des Altitude-PID wird auf den Bereich von 0 bis Maxthrust (im Moment 3.5) begrenzt
+        //Der Ausgabe-Wert des Altitude-PID wird auf den Bereich von 0 bis Maxthrust (im Moment 5) begrenzt
         if (curAltValue <= -maxThrust)
         {
             curAltValue = -maxThrust;
@@ -58,7 +58,7 @@ public class FollowerCubeController : MonoBehaviour
 
         float curDisValue = distancePID.Update(disErr);
 
-        //Der Ausgabe-Wert des Distance-PID wird auf den Bereich von +MaxSpeed bis -MaxSpeed (im Moment 2) begrenzt
+        //Der Ausgabe-Wert des Distance-PID wird auf den Bereich von +MaxSpeed bis -MaxSpeed (im Moment 5) begrenzt
         if (curDisValue <= -maxSpeed)
         {
             curDisValue = -maxSpeed;

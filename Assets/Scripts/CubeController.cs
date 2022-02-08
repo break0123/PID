@@ -19,12 +19,14 @@ public class CubeController : MonoBehaviour
     private WaypointManager wM;
     CubeThruster cT;
     CubeMover cM;
+    RaycastObstacleSensor rOS;
 
     void Start()
     {
         cT = GetComponent<CubeThruster>();
         cM = GetComponent<CubeMover>();
         wM = GetComponent<WaypointManager>();
+        rOS = GetComponentInChildren<RaycastObstacleSensor>();
 
         maxThrust = cT.maxThrust;
         maxSpeed = cM.maxSpeed;
@@ -43,7 +45,7 @@ public class CubeController : MonoBehaviour
         float altErr = targetAltitude - curAltitude;
         float curAltValue = altitudePID.Update(altErr);
 
-        //Der Ausgabe-Wert des Altitude-PID wird auf den Bereich von 0 bis Maxthrust (im Moment 3.5) begrenzt
+        //Der Ausgabe-Wert des Altitude-PID wird auf den Bereich von 0 bis Maxthrust (im Moment 5) begrenzt
         if (curAltValue <= -maxThrust)
         {
             curAltValue = -maxThrust;
@@ -71,7 +73,7 @@ public class CubeController : MonoBehaviour
 
                 float curDisValue = distancePID.Update(disErr);
 
-                //Der Ausgabe-Wert des Distance-PID wird auf den Bereich von +MaxSpeed bis -MaxSpeed (im Moment 2) begrenzt
+                //Der Ausgabe-Wert des Distance-PID wird auf den Bereich von +MaxSpeed bis -MaxSpeed (im Moment 5) begrenzt
                 if (curDisValue <= -maxSpeed)
                 {
                     curDisValue = -maxSpeed;
@@ -89,13 +91,14 @@ public class CubeController : MonoBehaviour
                 if (curWaypointDist <= 0.25 && wM.waypoints.Count != 1)
                 {
                     wM.waypoints.Remove(curWaypoint);
+                    curWaypoint.SetActive(false);
                 }
                 else if (curWaypointDist > 0.5)
                 {
                     //Rotiert die Drohne, sodass sie immer ihr Target anschaut
                     transform.LookAt(new Vector3(curWaypoint.transform.position.x, transform.position.y, curWaypoint.transform.position.z));
-                    //Quaternion toRotation = Quaternion.FromToRotation(transform.forward, new Vector3(curWaypointDir.x, 0, curWaypointDir.z));
-                    //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 2 * Time.time);
+                    //Quaternion toRotation = Quaternion.FromToRotation(transform.right, new Vector3(curWaypointDir.x, 0, curWaypointDir.z));
+                    //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 1 * Time.deltaTime);
                 }
             }
             //---------------------------------------------------------------------
