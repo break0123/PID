@@ -1,5 +1,5 @@
-# PID
-Controlling a Drone in Unity with the help of a PID-Controller  
+# PID und ML-Agent
+Controlling a Drone in Unity  
 
 Fremde Materialien:  
 - Samsung Lense Grafik für die Drone in Blender  
